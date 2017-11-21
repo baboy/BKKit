@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 baboy. All rights reserved.
 //
 
-#ifndef BCommonLib_BKKitHttp_h
-#define BCommonLib_BKKitHttp_h
+#ifndef BKKitHttp_h
+#define BKKitHttp_h
 
 #import "BHttpRequestCacheHandler.h"
 #import "BHttpRequestManager+Deprecated.h"

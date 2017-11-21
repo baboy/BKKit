@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 baboy. All rights reserved.
 //
 
-#ifndef BCommonLib_BKKitDao_h
-#define BCommonLib_BKKitDao_h
+#ifndef BKKitDao_h
+#define BKKitDao_h
 
 #import "Dao.h"
 #import "BQueue.h"

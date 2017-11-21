@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 baboy. All rights reserved.
 //
 
-#ifndef BCommonLib_BKKitUI_h
-#define BCommonLib_BKKitUI_h
+#ifndef BKKitUI_h
+#define BKKitUI_h
 
 #import "BLineView.h"
 #import "UIButton+x.h"

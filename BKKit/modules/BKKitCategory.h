@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 baboy. All rights reserved.
 //
 
-#ifndef BCommonLib_BKKitCategory_h
-#define BCommonLib_BKKitCategory_h
+#ifndef BKKitCategory_h
+#define BKKitCategory_h
 #import "NSArray+x.h"
 #import "NSData+x.h"
 #import "NSDate+x.h"
