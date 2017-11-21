@@ -7,6 +7,7 @@
 //
 
 #import "BKKit.h"
+#import "AFNetworking.h"
 
 @implementation BKKit
 
