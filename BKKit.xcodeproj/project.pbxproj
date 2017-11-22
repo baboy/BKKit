@@ -385,18 +385,18 @@
 		834C32CC1FC412D200F4E503 /* app */ = {
 			isa = PBXGroup;
 			children = (
-				834C32CD1FC412D200F4E503 /* BApi.m */,
-				834C32CE1FC412D200F4E503 /* AppContext.h */,
-				834C32CF1FC412D200F4E503 /* Device.h */,
-				834C32D01FC412D200F4E503 /* Global.h */,
-				834C32D11FC412D200F4E503 /* default.api.plist */,
 				834C32D21FC412D200F4E503 /* AppBaseDelegate.h */,
-				834C32D31FC412D200F4E503 /* default.conf.plist */,
-				834C32D41FC412D200F4E503 /* BApi.h */,
-				834C32D51FC412D200F4E503 /* AppContext.m */,
-				834C32D61FC412D200F4E503 /* Device.m */,
-				834C32D71FC412D200F4E503 /* Global.m */,
 				834C32D81FC412D200F4E503 /* AppBaseDelegate.m */,
+				834C32CE1FC412D200F4E503 /* AppContext.h */,
+				834C32D51FC412D200F4E503 /* AppContext.m */,
+				834C32D41FC412D200F4E503 /* BApi.h */,
+				834C32CD1FC412D200F4E503 /* BApi.m */,
+				834C32D11FC412D200F4E503 /* default.api.plist */,
+				834C32D31FC412D200F4E503 /* default.conf.plist */,
+				834C32CF1FC412D200F4E503 /* Device.h */,
+				834C32D61FC412D200F4E503 /* Device.m */,
+				834C32D01FC412D200F4E503 /* Global.h */,
+				834C32D71FC412D200F4E503 /* Global.m */,
 			);
 			path = app;
 			sourceTree = "<group>";
