@@ -7,11 +7,10 @@
 //
 
 #import "Global.h"
+#import "BKKitDefines.h"
 #import "Utils.h"
-#import "BKKitDao.h"
-#import "BApi.h"
-#import "Theme.h"
-#import "GString.h"
+#import "DBCache.h"
+#import "App.h"
 
 @interface G()
 
@@ -67,38 +66,6 @@ static NSMutableDictionary *data;
 	return data;
 }
 
-+ (void)setConf:(NSString *)conf{
-    [self setup:conf];
-    [BApi setup:conf];
-    [Theme setup:conf];
-    [GString setup:conf];
-}
 @end
-
-
-void add_app_start_times(){
-    [DBCache setValue:[NSNumber numberWithInt:get_app_start_times()+1] forKey:@"app_start_times"];
-    add_current_app_start_times();
-}
-int get_app_start_times(){
-    return [DBCache intForKey:@"app_start_times"];
-}
-void add_current_app_start_times(){
-    NSString *k = [NSString stringWithFormat:@"app_start_times_ver%@",BundleVersion];
-    [DBCache setValue:[NSNumber numberWithInt:get_current_app_start_times()+1] forKey:k];
-}
-int get_current_app_start_times(){
-    NSString *k = [NSString stringWithFormat:@"app_start_times_ver%@",BundleVersion];
-    return [DBCache intForKey:k];
-}
-void set_current_app_comment(int level){
-    NSString *k = [NSString stringWithFormat:@"current_app_comment_ver%@",BundleVersion];
-    [DBCache setValue:[NSNumber numberWithInt:level] forKey:k];
-}
-int get_current_app_comment(){
-    NSString *k = [NSString stringWithFormat:@"current_app_comment_ver%@",BundleVersion];
-    return [DBCache intForKey:k];
-}
-
 
 

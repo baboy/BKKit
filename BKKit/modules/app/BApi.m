@@ -7,10 +7,12 @@
 //
 
 #import "BApi.h"
+#import "BKKitDefines.h"
+#import "DBCache.h"
+#import "NSString+x.h"
 #import "Utils.h"
+#import "NSArray+x.h"
 #import "Global.h"
-#import "BKKitDao.h"
-#import "BKKitCategory.h"
 
 @implementation BApi
 + (Class)handler{

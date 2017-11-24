@@ -7,7 +7,8 @@
 //
 
 #import "Dao.h"
-#import "BKKitCtx.h"
+#import "Utils.h"
+#import "BKKitDefines.h"
 
 //#define dbFile			@"db.sqlite"
 //#define sqlFile			@"sql.plist"
@@ -77,11 +78,3 @@ static NSMutableDictionary *_dbPool_ = nil;
 }
 @end
 
-@implementation NamespaceDao
-
-+ (FMDatabase*)db{
-    NSString *ns = [AppContext ns];
-    return [self db:ns];
-}
-
-@end

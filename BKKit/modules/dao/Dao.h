@@ -20,5 +20,3 @@
 + (BOOL) execSQL:(NSString *)sql withArgs:(NSArray *)args;
 @end
 
-@interface NamespaceDao : Dao
-@end

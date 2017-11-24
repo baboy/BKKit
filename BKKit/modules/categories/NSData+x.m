@@ -7,7 +7,7 @@
 //
 
 #import "NSData+x.h"
-#import "BKKitCtx.h"
+#import "BKKitDefines.h"
 @implementation NSData(x)
 - (id)json{
     NSError *err = nil;

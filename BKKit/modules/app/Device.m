@@ -6,8 +6,8 @@
 //
 //
 #import <UIKit/UIKit.h>
+#import "App.h"
 #import "Device.h"
-#import "Global.h"
 #import "DBCache.h"
 
 @implementation Device
@@ -24,7 +24,7 @@
     device.channel = [DBCache valueForKey:@"channel"];
     device.productId = [[[NSBundle mainBundle] infoDictionary] valueForKey:@"CFBundleIdentifier"];
     device.version = ([[[NSBundle mainBundle] infoDictionary] valueForKey:@"CFBundleShortVersionString"]?[[[NSBundle mainBundle] infoDictionary] valueForKey:@"CFBundleShortVersionString"]:[[[NSBundle mainBundle] infoDictionary] valueForKey:@"CFBundleVersion"]);
-    device.deviceId = [OpenUDID value];
+    device.deviceId = DeviceID;
     device.resolution = [NSString stringWithFormat:@"%dx%d", (int)[[UIScreen mainScreen] bounds].size.width, (int)[[UIScreen mainScreen] bounds].size.height];
     device.deviceName = [[UIDevice currentDevice] name];
     device.os = [[UIDevice currentDevice] systemName];

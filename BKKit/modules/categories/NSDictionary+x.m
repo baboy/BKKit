@@ -7,7 +7,7 @@
 //
 
 #import "NSDictionary+x.h"
-#import "BKKitCtx.h"
+#import "BKKitDefines.h"
 #import "NSMutableData+x.h"
 #import "NSString+x.h"
 #import "NSDate+x.h"

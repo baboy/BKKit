@@ -8,9 +8,10 @@
 
 #import "CacheURLProtocol.h"
 #import "Base64.h"
-#import "BKKitHttp.h"
-#import "Global.h"
+#import "BKKitDefines.h"
 #import "NSString+x.h"
+#import "BHttpRequestCacheHandler.h"
+#import "BHttpRequestManager.h"
 
 @interface CacheURLProtocol()
 @property(nonatomic, retain) id task;

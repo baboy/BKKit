@@ -96,8 +96,97 @@ Pod::Spec.new do |s|
   # s.resource = "BKKit/modules/dao/db.plist"
   # s.exclude_files = "Classes/Exclude"
 
-  # s.public_header_files = "BKKit/**/*.h"
+  # s.public_header_files = "BKKit/BKKitDefines.h"
+  s.subspec 'modules' do |mod|
+      mod.subspec 'utils' do |utils|
+        utils.source_files = 'BKKit/modules/utils'
+        # utils.dependency "BKKit"
+      end
+      mod.subspec 'macro' do |macro|
+        macro.source_files = 'BKKit/modules/macro'
+      end
+      mod.subspec 'categories' do |cate|
+        cate.dependency "BKKit/modules/utils"
+        cate.dependency "BKKit/modules/macro"
+        cate.source_files = 'BKKit/modules/categories'
+      end
+      mod.subspec 'dao' do |dao|
+        dao.dependency "BKKit/modules/utils"
+        dao.dependency "BKKit/modules/categories"
+        dao.dependency "BKKit/modules/macro"
+        dao.source_files = 'BKKit/modules/dao'
+        dao.resource = 'BKKit/modules/dao/db.plist'
+      end
 
+      mod.subspec 'app' do |app|
+        app.dependency "BKKit/modules/utils"
+        app.dependency "BKKit/modules/categories"
+        app.dependency "BKKit/modules/macro"
+        app.source_files = 'BKKit/modules/app'
+        app.resource = 'BKKit/modules/app/default.api.plist','BKKit/modules/app/default.conf.plist'
+      end
+      
+      mod.subspec 'lang' do |lang|
+        lang.dependency "BKKit/modules/categories"
+        lang.dependency "BKKit/modules/utils"
+        lang.dependency "BKKit/modules/macro"
+        lang.source_files = 'BKKit/modules/lang'
+      end
+      mod.subspec 'http' do |http|
+        http.dependency "BKKit/modules/categories"
+        http.dependency "BKKit/modules/utils"
+        http.dependency "BKKit/modules/macro"
+        http.dependency "BKKit/modules/lang"
+        http.source_files = 'BKKit/modules/http'
+      end
+
+      mod.subspec 'ui' do |ui|
+
+        ui.dependency "BKKit/modules/utils"
+        ui.dependency "BKKit/modules/dao"
+        ui.source_files = 'BKKit/modules/ui'
+
+        ui.subspec "view" do |view|
+          view.dependency "BKKit/modules/macro"
+          view.source_files = 'BKKit/modules/ui/view'
+        end
+
+        ui.subspec 'complex' do |complex|
+          complex.dependency "BKKit/modules/macro"
+          complex.dependency "BKKit/modules/http"
+          complex.dependency "BKKit/modules/ui/view"
+          complex.source_files = 'BKKit/modules/ui/complex'
+        end
+      end
+      mod.subspec 'map' do |map|
+        map.dependency "BKKit/modules/ui/complex"
+        map.dependency "BKKit/modules/macro"
+        map.dependency "BKKit/modules/http"
+        map.source_files = 'BKKit/modules/map'
+      end
+
+
+      mod.subspec 'ctx' do |ctx|
+        ctx.dependency "BKKit/modules/utils"
+        ctx.dependency "BKKit/modules/macro"
+        ctx.dependency "BKKit/modules/dao"
+        ctx.dependency "BKKit/modules/app"
+        ctx.dependency "BKKit/modules/ui"
+        ctx.dependency "BKKit/modules/ui/complex"
+        ctx.source_files = 'BKKit/modules/ctx'
+
+        ctx.subspec 'app' do |app|
+          app.source_files = 'BKKit/modules/ctx/app'
+        end
+        ctx.subspec 'user' do |user|
+          user.source_files = 'BKKit/modules/ctx/user'
+        end
+        ctx.subspec 'base' do |base|
+          base.source_files = 'BKKit/modules/ctx/base'
+        end
+
+      end
+  end
    # s.subspec 'modules' do |mod|
    #   mod.source_files = 'BKKit/modules'
    #   mod.subspec 'app' do |app|

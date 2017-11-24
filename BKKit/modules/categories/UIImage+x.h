@@ -7,9 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "UIUtils.h"
+#import <UIKit/UIKit.h>
 extern UIImage * createImageWithImage(UIImage *originImage, CGSize imageSize, UIColor *shadowColor, CGSize shadowOffset,UIColor *borderColor, int borderWidth, int rad);
 extern void createPath(CGContextRef ctx,CGRect rect,float rad);
+extern CGSize sizeOfImage(NSString *imageName);
+
 @interface UIImage (x)
 - (UIImage *)resizableWithCapInsets:(UIEdgeInsets)capInsets;
 - (UIImage *)resizableWithCenter;

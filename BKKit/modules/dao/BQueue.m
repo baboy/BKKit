@@ -7,8 +7,9 @@
 //
 
 #import "BQueue.h"
-#import "BKKitCtx.h"
-#import "BKKitCategory.h"
+#import "BKKitDefines.h"
+#import "Utils.h"
+#import "NSString+x.h"
 
 @implementation BQueueItem
 
@@ -29,39 +30,8 @@
     }
     return self;
 }
-- (void)dealloc{
-    ////
-    ////
-    ////
-    ////
-    ////
-    ////
-    ////
-    ////
-    ////
-    //[super dealloc];
-}
 
 
-@end
-
-@implementation BQueueItem(BQueueItemDeprecated)
-
-- (int)tabId{
-    return 0;
-}
-- (void) setTabId:(int)tabId{
-    [self setID:tabId];
-}
-- (NSDictionary *)jsonData{
-    return [self.data json];
-}
-- (NSDictionary *)jsonData2{
-    return [self.data2 json];
-}
-- (NSDictionary *)jsonData3{
-    return [self.data3 json];
-}
 @end
 
 @implementation BQueue
@@ -200,106 +170,3 @@
 }
 @end
 
-@implementation BQueue(BQueueDeprecated)
-
-
-+ (BOOL) addDomain:(NSString *)domain queue:(NSString *)qid datas:(NSString *)data, ...{
-    if (!data) {
-        return NO;
-    }
-    domain = domain?domain:@"G";
-    NSMutableArray *datas = [NSMutableArray arrayWithCapacity:5];
-    va_list args;
-    va_start(args, data);
-    id arg;
-    
-    while ( (arg = va_arg(args, NSString*) ) != nil) {
-        [datas addObject:arg];
-        if ([datas count]>=5) {
-            break;
-        }
-    }
-    va_end(args);
-    for (NSInteger i=[datas count]; i<5; i++) {
-        [datas addObject:[NSNull null]];
-    }
-    FMDatabase *db = [self db];
-	BOOL ret =[db executeUpdate:@"INSERT INTO queue (domain,qid,data,data2,data3,data4,data5,data6) VALUES (?,?,?,?,?,?,?,?)",domain,qid,data,[datas objectAtIndex:0],[datas objectAtIndex:1],[datas objectAtIndex:2],[datas objectAtIndex:3],[datas objectAtIndex:4]];
-    DLOG(@"add queue state:%d",ret);
-	[self close:db];
-	return ret;
-}
-+ (BOOL) addDomain:(NSString *)domain queue:(NSString *)qid data:(NSString *)data{
-    return [self addDomain:domain queue:qid datas:data,nil];
-}
-+ (BOOL) addQueue:(NSString *)qid data:(NSString *)data{
-    return [self addDomain:@"G" queue:qid datas:data,nil];
-}
-+ (BQueueItem *) getOneItemByDomain:(NSString *)domain{
-    BQueueItem *ret = nil;
-    FMDatabase *db = [self db];
-	FMResultSet *rs = [db executeQuery:@"SELECT * FROM queue WHERE domain=? LIMIT 0,1",domain];
-    if ([rs next]) {
-        ret = [[BQueueItem alloc] initWithDictionary:[rs resultDict]];
-    }
-    [self close:db];
-	return ret;
-}
-+ (BQueueItem *) getOneItemByDomain:(NSString *)domain queue:(NSString *)qid{
-    BQueueItem *ret = nil;
-    FMDatabase *db = [self db];
-	FMResultSet *rs = [db executeQuery:@"SELECT * FROM queue WHERE domain=? AND qid=? LIMIT 0,1",domain, qid];
-    if ([rs next]) {
-        ret = [[BQueueItem alloc] initWithDictionary:[rs resultDict]];
-    }
-    [self close:db];
-	return ret;
-}
-+ (NSArray *) getAllItemsByDomain:(NSString *)domain queue:(NSString *)qid{
-    if (!qid) {
-        return [self getAllItemsByDomain:domain];
-    }
-    NSMutableArray *ret = nil;
-    FMDatabase *db = [self db];
-	FMResultSet *rs = [db executeQuery:@"SELECT * FROM queue WHERE domain=? AND qid=? ORDER BY id ASC",domain,qid];
-    ret = [NSMutableArray array];
-    while ([rs next]) {
-        BQueueItem *qData = [[BQueueItem alloc] initWithDictionary:[rs resultDict]];
-        [ret addObject:qData];
-    }
-	[self close:db];
-	return ret;
-}
-+ (NSArray *) getAllItemsByDomain:(NSString *)domain{
-    NSMutableArray *ret = nil;
-    FMDatabase *db = [self db];
-	FMResultSet *rs = [db executeQuery:@"SELECT * FROM queue WHERE domain=?",domain];
-    ret = [NSMutableArray array];
-    while ([rs next]) {
-        BQueueItem *qData = [[BQueueItem alloc] initWithDictionary:[rs resultDictionary]];
-        [ret addObject:qData];
-    }
-	[self close:db];
-	return ret;
-}
-+ (BOOL) removeByDomain:(NSString *)domain{
-    BOOL ret = NO;
-    FMDatabase *db = [self db];
-    ret = [db executeUpdate:@"DELETE FROM queue WHERE domain=?",domain];
-	
-	[self close:db];
-	return ret;
-}
-+ (BOOL) removeByDomain:(NSString *)domain queue:(NSString *)qid{
-    BOOL ret = NO;
-    FMDatabase *db = [self db];
-    ret = [db executeUpdate:@"DELETE FROM queue WHERE domain=? AND qid=?",domain,qid];
-	
-	[self close:db];
-	return ret;
-}
-+ (BOOL) setField:(NSString *)field value:(NSString *)val forField:(NSString*)field2 value:(id)val2{
-    
-    return [self updateField:field value:val forField:field2 value:val2];
-}
-@end

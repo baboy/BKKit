@@ -7,7 +7,7 @@
 //
 
 #import "DBCache.h"
-#import "BKKitCategory.h"
+#import "NSString+x.h"
 
 #define CacheSqlQuery	@"select value from cache where domain=? and key=?"
 #define CacheSqlRmForKey	@"delete from cache where domain=? and key=?"

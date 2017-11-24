@@ -7,9 +7,8 @@
 //
 
 #import "Utils.h"
-#import "BKKitCtx.h"
-#import "BKKitCategory.h"
 #import "RegexKitLite.h"
+#import "BKKitDefines.h"
 
 #define WEB_CACHE_DIR		@"web_cache"
 #define WEB_TMP_DIR		@"web_tmp"
@@ -78,7 +77,7 @@ NSString * getTempFilePath(NSString *fn){
     return fp;
 }
 id nullToNil(id obj){
-	return (NSNull *)obj == [NSNull null]?nil:obj;
+	return obj == [NSNull null]?nil:obj;
 }
 id nilToNull(id obj){
 	return obj == nil?[NSNull null]:obj;

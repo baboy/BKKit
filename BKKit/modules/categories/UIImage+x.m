@@ -517,3 +517,15 @@ UIImage * createGradientButtonBg(NSArray *bgColors,CGFloat locations[],UIColor* 
 }
 
 @end
+CGSize sizeOfImage(NSString *imageName){
+    CGSize size = CGSizeZero;
+    UIImage *image = [UIImage imageNamed:imageName];
+    if (!image && ![imageName hasSuffix:@"-0"]) {
+        image = [UIImage imageNamed:[NSString stringWithFormat:@"%@-0", imageName]];
+    }
+    if (!image)
+        image = [UIImage imageWithContentsOfFile:imageName];
+    if (image)
+        size = image.size;
+    return size;
+}

@@ -62,24 +62,3 @@
 + (BOOL) updateData:(NSString *)val forQueue:(NSString *)qid key:(NSString *)key;
 @end
 
-@interface BQueueItem(BQueueItemDeprecated)
-- (int)tabId __attribute__ ((deprecated));
-- (void) setTabId:(int)tabId __attribute__ ((deprecated));
-- (NSDictionary *)jsonData __attribute__ ((deprecated));
-- (NSDictionary *)jsonData2 __attribute__ ((deprecated));
-- (NSDictionary *)jsonData3 __attribute__ ((deprecated));
-@end
-
-@interface BQueue (BQueueDeprecated)
-
-+ (BOOL) addDomain:(NSString *)domain queue:(NSString *)qid datas:(NSString *)data, ... __attribute__ ((deprecated));
-+ (BOOL) addDomain:(NSString *)domain queue:(NSString *)qid data:(NSString *)data  __attribute__ ((deprecated));
-+ (BOOL) addQueue:(NSString *)qid data:(NSString *)data  __attribute__ ((deprecated));
-+ (BQueueItem *) getOneItemByDomain:(NSString *)domain  __attribute__ ((deprecated));
-+ (BQueueItem *) getOneItemByDomain:(NSString *)domain queue:(NSString *)qid  __attribute__ ((deprecated));
-+ (NSArray *) getAllItemsByDomain:(NSString *)domain  __attribute__ ((deprecated));
-+ (NSArray *) getAllItemsByDomain:(NSString *)domain queue:(NSString *)qid  __attribute__ ((deprecated));
-+ (BOOL) removeByDomain:(NSString *)domain  __attribute__ ((deprecated));
-+ (BOOL) removeByDomain:(NSString *)domain queue:(NSString *)qid  __attribute__ ((deprecated));
-+ (BOOL) setField:(NSString *)field value:(NSString *)val forField:(NSString*)field2 value:(id)val2  __attribute__ ((deprecated));
-@end

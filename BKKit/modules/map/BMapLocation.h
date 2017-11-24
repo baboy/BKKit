@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
-#import "BHttpRequestOperation.h"
 
 @interface BMapLocation : NSObject
 @property (nonatomic, retain) NSString *address;
@@ -22,6 +21,6 @@
 - (NSDictionary *)dict;
 + (BMapLocation *)currentLocation;
 + (void)saveCurrentLocation:(BMapLocation *)location;
-+ (BHttpRequestOperation *)getLocationByIpSuccess:(void (^)(BMapLocation *loc))success failure:(void (^)(NSError *error))failure;
-+ (BHttpRequestOperation *)search:(NSString *)location callback:(void (^)(BHttpRequestOperation *operation,NSArray *locs, NSError *error))callback;
++ (id)getLocationByIpSuccess:(void (^)(BMapLocation *loc))success failure:(void (^)(NSError *error))failure;
++ (id)search:(NSString *)location callback:(void (^)(id task, NSArray *locs, NSError *error))callback;
 @end

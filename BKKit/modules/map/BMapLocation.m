@@ -7,11 +7,11 @@
 //
 
 #import "BMapLocation.h"
-#import "Global.h"
-#import "BKKitHttp.h"
 #import "Utils.h"
 #import "BApi.h"
 #import "NSString+x.h"
+#import "BHttpRequestManager.h"
+#import "Global.h"
 
 @implementation BMapLocation
 @synthesize address = _address;
@@ -88,7 +88,7 @@
     NSString *currentAddress = [NSString stringWithFormat:@"%@%@%@", [location country]?[location country]:@"", [location province]?[location province]:@"",([location city] && ![[location city] isEqualToString:[location province]])?[location city]:@""];
     [G setValue:currentAddress forKey:@"CurrentAdress"];
 }
-+ (BHttpRequestOperation *)getLocationByIpSuccess:(void (^)(BMapLocation *loc))success failure:(void (^)(NSError *error))failure{
++ (id)getLocationByIpSuccess:(void (^)(BMapLocation *loc))success failure:(void (^)(NSError *error))failure{
     return [[BHttpRequestManager defaultManager]
             getJson:@"http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=json"
             parameters:nil
@@ -108,35 +108,36 @@
                 }
             }];
 }
-+ (BHttpRequestOperation *)search:(NSString *)location success:(void (^)(id task,NSArray *locs, NSError *error))success failure:(void (^)(id task, NSError *error))failure{
-    NSString *url = [ApiQueryLocation URLStringWithParam:@{@"q":location}];
-    return [[BHttpRequestManager defaultManager]
-     getJson:url
-            parameters:nil
-            success:^(id  _Nonnull task, id  _Nullable json) {
-                HttpResponse *response = [HttpResponse responseWithDictionary:json];
-                NSMutableArray *addrs = nil;
-                NSError *error = nil;
-                if (response.isSuccess) {
-                    NSArray *list = response.data;
-                    if ([list isKindOfClass:[NSArray class]]) {
-                        addrs = [NSMutableArray array];
-                        NSInteger n = [list count];
-                        for (int i=0; i<n; i++) {
-                            BMapLocation *loc = /*AUTORELEASE*/([[BMapLocation alloc] initWithGeoData:[list objectAtIndex:i]]);
-                            [addrs addObject:loc];
-                        }
-                    }
-                }
-                if ( !addrs || [addrs count] ==0 ) {
-                    NSDictionary *userInfo = @{NSLocalizedDescriptionKey:NSLocalizedString(@"未获取到地址信息", nil)};
-                    error = [NSError errorWithDomain:HttpRequestDomain code:-1 userInfo:userInfo];
-                }
-                success(task, addrs, error);
-
-            }
-            failure:^(id  _Nullable task, id  _Nullable json, NSError * _Nonnull error) {
-                failure(task, error);
-            }];
++ (id)search:(NSString *)location success:(void (^)(id task,NSArray *locs, NSError *error))success failure:(void (^)(id task, NSError *error))failure{
+    return nil;
+//    NSString *url = [ApiQueryLocation URLStringWithParam:@{@"q":location}];
+//    return [[BHttpRequestManager defaultManager]
+//     getJson:url
+//            parameters:nil
+//            success:^(id  _Nonnull task, id  _Nullable json) {
+//                HttpResponse *response = [HttpResponse responseWithDictionary:json];
+//                NSMutableArray *addrs = nil;
+//                NSError *error = nil;
+//                if (response.isSuccess) {
+//                    NSArray *list = response.data;
+//                    if ([list isKindOfClass:[NSArray class]]) {
+//                        addrs = [NSMutableArray array];
+//                        NSInteger n = [list count];
+//                        for (int i=0; i<n; i++) {
+//                            BMapLocation *loc = /*AUTORELEASE*/([[BMapLocation alloc] initWithGeoData:[list objectAtIndex:i]]);
+//                            [addrs addObject:loc];
+//                        }
+//                    }
+//                }
+//                if ( !addrs || [addrs count] ==0 ) {
+//                    NSDictionary *userInfo = @{NSLocalizedDescriptionKey:NSLocalizedString(@"未获取到地址信息", nil)};
+//                    error = [NSError errorWithDomain:HttpRequestDomain code:-1 userInfo:userInfo];
+//                }
+//                success(task, addrs, error);
+//
+//            }
+//            failure:^(id  _Nullable task, id  _Nullable json, NSError * _Nonnull error) {
+//                failure(task, error);
+//            }];
 }
 @end

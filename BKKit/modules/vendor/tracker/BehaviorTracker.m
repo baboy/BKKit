@@ -7,12 +7,17 @@
 //
 
 #import "BehaviorTracker.h"
-#import "BKKitCtx.h"
-#import "BKKitCategory.h"
-#import "BKKitHttp.h"
-#import "BKKitDao.h"
-#import "Global.h"
+#import "BKKitDefines.h"
+#import "NetChecker.h"
 #import "Device.h"
+#import "NSDate+x.h"
+#import "NSArray+x.h"
+#import "BHttpRequestManager.h"
+#import "NSDictionary+x.h"
+#import "Global.h"
+#import "HttpResponse.h"
+#import "NSThread+x.h"
+#import "App.h"
 
 #define LogApiRegisterDevice    @"http://app.tvie.com.cn/log/"
 #define LogApiPostEvent         @"http://app.tvie.com.cn/log/"

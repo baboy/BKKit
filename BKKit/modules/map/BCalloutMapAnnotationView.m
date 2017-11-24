@@ -7,8 +7,9 @@
 //
 
 #import "BCalloutMapAnnotationView.h"
-#import "BKKitCtx.h"
-#import "BKKitCategory.h"
+#import "BKKitDefines.h"
+#import "XUILabel.h"
+#import "NSString+x.h"
 
 #define AnnoTitleFont       [UIFont boldSystemFontOfSize:16]
 #define AnnoSubTitleFont    [UIFont systemFontOfSize:14]

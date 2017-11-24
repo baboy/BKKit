@@ -9,9 +9,11 @@
 #import "NSString+x.h"
 #import "pinyin.h"
 #import <CommonCrypto/CommonHMAC.h>
-#import "BKKitCtx.h"
+#import "BKKitDefines.h"
 #import "RegexKitLite.h"
 #import "NSDictionary+x.h"
+#import "Base64.h"
+#import "Utils.h"
 
 
 @implementation NSString(x)

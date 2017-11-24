@@ -7,7 +7,7 @@
 //
 
 #import "NSArray+x.h"
-#import "BKKitCtx.h"
+#import "BKKitDefines.h"
 
 @implementation NSArray(x)
 - (NSArray *)reverse {

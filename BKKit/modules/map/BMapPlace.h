@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
-#import "BKKitHttp.h"
 
 @interface BMapPlace : NSObject
 @property (nonatomic, assign) double lat;
@@ -23,6 +22,4 @@
 
 - (id) initWithDictionary:(NSDictionary*)dict;
 - (NSDictionary *) dict;
-
-+ (BHttpRequestOperation *)search:(NSString *)location callback:(void (^)(BHttpRequestOperation *operation,NSArray *locs, NSError *error))callback;
 @end
