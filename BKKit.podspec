@@ -92,12 +92,16 @@ Pod::Spec.new do |s|
   #
 
   # s.source_files  = "BKKit","BKKit/modules","BKKit/modules/app","BKKit/modules/categories","BKKit/modules/controller","BKKit/modules/dao","BKKit/modules/ext","BKKit/modules/map","BKKit/modules/model","BKKit/modules/model/app","BKKit/modules/model/member","BKKit/modules/network","BKKit/modules/theme","BKKit/modules/ui","BKKit/modules/utils","BKKit/modules/vendor","BKKit/modules/vendor/AFNetworking","BKKit/modules/vendor/tracker","BKKit/modules/web"
-  s.source_files  = "BKKit","BKKit/modules/network"
+  s.source_files  = "BKKit"
   # s.resource = "BKKit/modules/dao/db.plist"
   # s.exclude_files = "Classes/Exclude"
 
   # s.public_header_files = "BKKit/BKKitDefines.h"
   s.subspec 'modules' do |mod|
+      mod.subspec 'network' do |network|
+        network.source_files = 'BKKit/modules/network'
+        # utils.dependency "BKKit"
+      end
       mod.subspec 'utils' do |utils|
         utils.source_files = 'BKKit/modules/utils'
         # utils.dependency "BKKit"
@@ -187,63 +191,6 @@ Pod::Spec.new do |s|
 
       end
   end
-   # s.subspec 'modules' do |mod|
-   #   mod.source_files = 'BKKit/modules'
-   #   mod.subspec 'app' do |app|
-   #     app.resource = 'BKKit/modules/app/default.api.plist', 'BKKit/modules/app/default.conf.plist'
-   #     app.source_files = 'BKKit/modules/app'
-   #   end
-   #   mod.subspec 'vendor' do |vd|
-   #     vd.source_files = 'BKKit/modules/vendor'
-   #     vd.subspec 'AFNetworking' do |af|
-   #       af.source_files = 'BKKit/modules/vendor/AFNetworking'
-   #     end
-   #     vd.subspec 'tracker' do |tracker|
-   #       tracker.source_files = 'BKKit/modules/vendor/tracker'
-   #     end
-   #   end
-   #   mod.subspec 'model' do |model|
-   #     model.source_files = 'BKKit/modules/model'
-   #     model.subspec 'member' do |member|
-   #       member.source_files = 'BKKit/modules/model/member'
-   #     end
-   #     model.subspec 'app' do |app|
-   #       app.source_files = 'BKKit/modules/model/app'
-   #     end
-   #   end
-   #   mod.subspec 'categories' do |cate|
-   #     cate.source_files = 'BKKit/modules/categories'
-   #   end
-   #   mod.subspec 'dao' do |dao|
-   #   dao.resource = 'BKKit/modules/dao/db.plist'
-   #     dao.source_files = 'BKKit/modules/dao'
-   #   end
-   #   mod.subspec 'controller' do |controller|
-   #     controller.source_files = 'BKKit/modules/controller'
-   #   end
-   #   mod.subspec 'ext' do |ext|
-   #     ext.source_files = 'BKKit/modules/ext'
-   #   end
-   #   mod.subspec 'map' do |map|
-   #     map.source_files = 'BKKit/modules/map'
-   #   end
-   #   mod.subspec 'network' do |network|
-   #     network.source_files = 'BKKit/modules/network'
-   #   end
-   #   mod.subspec 'ui' do |ui|
-   #     ui.source_files = 'BKKit/modules/ui'
-   #   end
-   #   mod.subspec 'utils' do |utils|
-   #     utils.source_files = 'BKKit/modules/utils'
-   #   end
-   #   mod.subspec 'theme' do |theme|
-   #     theme.resource = 'BKKit/modules/theme/default.string.plist', 'BKKit/modules/theme/default.theme.plist'
-   #     theme.source_files = 'BKKit/modules/theme'
-   #   end
-   #   mod.subspec 'web' do |web|
-   #     web.source_files = 'BKKit/modules/web'
-   #   end
-   # end
 
 
   # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
